@@ -10,11 +10,10 @@ GamePanelPuzzle game = new GamePanelPuzzle();
 
 	}
 	void setup() {	
-		
 		JFrame JF = new JFrame();
-		JF.add(game);
 		JF.setSize(WIDTH, HEIGHT);
 		JF.setVisible(true);
+		JF.add(game);
 		JF.addKeyListener(game);
 	}
 	}

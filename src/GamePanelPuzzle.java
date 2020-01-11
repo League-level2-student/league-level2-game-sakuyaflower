@@ -10,18 +10,20 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class GamePanelPuzzle extends Puzzle implements ActionListener, KeyListener {
-	final int MENU = 0;
-	final int GAME = 1;
-	final int END = 2;
+public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+
+	final int MENU = 0;
+	final int GAME = 1;
+	final int END = 2;
 	int currentState = MENU;
 	Font titleFont = new Font("Arial", Font.PLAIN, 48);
 	Font smallerFont = new Font("Arial", Font.PLAIN, 28);
-	Player person = new Player(400, 800, 50, 50);
+	PlayerBoy boy = new PlayerBoy(400, 800, 50, 50);
+	ObjectManager manager = new ObjectManager(boy);
 
 	public void paintComponent(Graphics g) {
 
@@ -51,9 +53,7 @@ public class GamePanelPuzzle extends Puzzle implements ActionListener, KeyListen
 	JPanel JP = new JPanel();
 	
 	void updateMenuState() {
-		manager.update();
-		if(rocket.isActive == false) {
-			endGame();
+	
 	}
 
 	void updateGameState() {

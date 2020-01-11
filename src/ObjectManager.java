@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ObjectManager implements ActionListener{
-	Player person;
+	PlayerBoy boy;
 	Apple apple;
 	int score = 0;
 
@@ -11,8 +11,8 @@ public class ObjectManager implements ActionListener{
 		return this.score;
 	}
 
-	ObjectManager(Player person) {
-		this.person = person;
+	ObjectManager(PlayerBoy boy) {
+		this.boy = boy;
 	}
 
 	void update() {
