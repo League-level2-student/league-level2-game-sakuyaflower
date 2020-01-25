@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
@@ -20,8 +21,9 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	final int GAME = 1;
 	final int END = 2;
 	int currentState = MENU;
-	Font titleFont = new Font("Arial", Font.PLAIN, 48);
-	Font smallerFont = new Font("Arial", Font.PLAIN, 28);
+	Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
+	Font smallerFont = new Font("Times New Roman", Font.PLAIN, 30);
+	Timer fruitSpawn;
 	PlayerBoy boy = new PlayerBoy(400, 800, 50, 50);
 	ObjectManager manager = new ObjectManager(boy);
 
@@ -37,11 +39,15 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	}
 
 	void startGame() {
-
-	}
+		fruitSpawn = new Timer(1000, manager);
+		fruitSpawn.start();
+		Timer frameDraw = new Timer(1000 / 60, this);
+		frameDraw.start();
+	}  
 
 	void endGame() {
-
+		fruitSpawn.stop();
+		currentState = END;
 	}
 
 	GamePanelPuzzle() {
@@ -65,22 +71,28 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawMenuState(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
 		g.setFont(titleFont);
-
 		g.setColor(Color.YELLOW);
-		g.drawString("text", 400, 300);
-
+		g.drawString("A Twist", 280, 200);
 		g.setFont(smallerFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("Please Press ENTER to Start", 400, 500);
-
-		g.setFont(titleFont);
+		g.drawString("Press ENTER to start", 250, 400);
+		g.setFont(smallerFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("Press SPACE for Directions", 400, 600);
+		g.drawString("Press SPACE for instructions", 230, 600);
 	}
 
 	void drawGameState(Graphics g) {
 
+		if (gotImage) {
+			g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
+		} else {
+			g.setColor(Color.BLUE);
+			g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
+		}
+		
 	}
 
 	void drawEndState(Graphics g) {
@@ -93,7 +105,7 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 		if (needImage) {
 			try {
 				image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
-				imageBackground = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+				imageBackground = ImageIO.read(this.getClass().getResourceAsStream("galaxy.jpg"));
 				gotImage = true;
 			} catch (Exception e) {
 
@@ -111,7 +123,11 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){		
+		}
+		
+		
+		
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 public class ObjectManager implements ActionListener{
 	PlayerBoy boy;
-	Apple apple;
+	Fruits apple;
 	int score = 0;
 
 	public int getScore() {
