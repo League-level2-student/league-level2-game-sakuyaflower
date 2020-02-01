@@ -43,7 +43,7 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 		fruitSpawn.start();
 		Timer frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
-	}  
+	}
 
 	void endGame() {
 		fruitSpawn.stop();
@@ -52,18 +52,21 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 
 	GamePanelPuzzle() {
 		if (needImage) {
-			loadImage("rocket.png");
+			loadImage("boy.png");
 		}
 	}
-	
+
 	JPanel JP = new JPanel();
-	
+
 	void updateMenuState() {
-	
+
 	}
 
 	void updateGameState() {
-
+		manager.update();
+		if (boy.isActive == false) {
+			endGame();
+		}
 	}
 
 	void updateEndState() {
@@ -71,6 +74,7 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawMenuState(Graphics g) {
+		
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
 		g.setFont(titleFont);
@@ -92,7 +96,8 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 			g.setColor(Color.BLUE);
 			g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
 		}
-		
+		g.setColor(Color.WHITE);
+		g.drawString("score:" + manager.getScore(), 50, 50);
 	}
 
 	void drawEndState(Graphics g) {
@@ -123,11 +128,26 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_ENTER){		
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == END) {
+				endGame();
+				currentState = MENU;
+				boy = new PlayerBoy(400, 800, 50, 50);
+				manager = new ObjectManager(boy);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP&& boy.y >= 0) {
+				boy.down();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN && boy.y <= 700) {
+				boy.up();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT && boy.x >= 0) {
+				boy.left();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT && boy.x <= 450) {
+				boy.right();
+			}
 		}
-		
-		
-		
 	}
 
 	@Override
@@ -148,5 +168,6 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 			updateEndState();
 
 		}
+	repaint();
 	}
 }

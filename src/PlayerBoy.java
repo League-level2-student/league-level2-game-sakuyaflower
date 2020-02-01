@@ -38,5 +38,21 @@ public class PlayerBoy extends GameObject{
 	        needImage = false;
 	    }
 	}
-	
+
+	public void right() {
+		x += speed;
+	}
+
+	public void left() {
+		x -= speed;
+	}
+
+	public void up() {
+		y += speed;
+	}
+
+	public void down() {
+		y -= speed;
+	}
+
 }
