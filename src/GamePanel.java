@@ -8,10 +8,11 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListener {
+public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
 	public static boolean needImage = true;
@@ -50,7 +51,7 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 		currentState = END;
 	}
 
-	GamePanelPuzzle() {
+	GamePanel() {
 		if (needImage) {
 			loadImage("boy.png");
 		}
@@ -74,17 +75,15 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawMenuState(Graphics g) {
-		
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
+		g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		g.setFont(titleFont);
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.WHITE);
 		g.drawString("A Twist", 280, 200);
 		g.setFont(smallerFont);
-		g.setColor(Color.YELLOW);
-		g.drawString("Press ENTER to start", 250, 400);
+		g.setColor(Color.WHITE);
+		g.drawString("Press ENTER to start", 255, 400);
 		g.setFont(smallerFont);
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.WHITE);
 		g.drawString("Press SPACE for instructions", 230, 600);
 	}
 
@@ -93,30 +92,21 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 		if (gotImage) {
 			g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		} else {
-			g.setColor(Color.BLUE);
-			g.fillRect(0, 0, Puzzle.WIDTH, Puzzle.HEIGHT);
+			g.drawImage(image, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
+			
 		}
+		manager.draw(g);
 		g.setColor(Color.WHITE);
 		g.drawString("score:" + manager.getScore(), 50, 50);
+
 	}
 
 	void drawEndState(Graphics g) {
+		g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You Won The Game", 400, 300);
-	}
+		g.drawString("You Won The Game", 100, 300);
 
-	void loadImage(String imageFile) {
-		if (needImage) {
-			try {
-				image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
-				imageBackground = ImageIO.read(this.getClass().getResourceAsStream("galaxy.jpg"));
-				gotImage = true;
-			} catch (Exception e) {
-
-			}
-			needImage = false;
-		}
 	}
 
 	@Override
@@ -128,25 +118,36 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			JOptionPane.showMessageDialog(null,
+"Catch all the fruits in the certain order and at the end figure out the surprise. Use your arrow keys to move and catch all the fruits. ");
+		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
 				endGame();
 				currentState = MENU;
-				boy = new PlayerBoy(400, 800, 50, 50);
-				manager = new ObjectManager(boy);
+			} else {
+				currentState++;
+				if (currentState == GAME) {
+					startGame();
+				}
 			}
-			if (e.getKeyCode() == KeyEvent.VK_UP&& boy.y >= 0) {
-				boy.down();
-			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN && boy.y <= 700) {
-				boy.up();
-			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT && boy.x >= 0) {
-				boy.left();
-			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT && boy.x <= 450) {
-				boy.right();
-			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP && boy.y >= 0) {
+			boy.down();
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN && boy.y <= 700) {
+			boy.up();
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_LEFT && boy.x >= 0) {
+			boy.left();
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT && boy.x <= 450) {
+			boy.right();
+
 		}
 	}
 
@@ -163,11 +164,23 @@ public class GamePanelPuzzle extends JPanel implements ActionListener, KeyListen
 			updateMenuState();
 		} else if (currentState == GAME) {
 			updateGameState();
-
 		} else if (currentState == END) {
 			updateEndState();
 
 		}
-	repaint();
+		repaint();
+
+	}
+
+	void loadImage(String imageFile) {
+		if (needImage) {
+			try {
+				imageBackground = ImageIO.read(this.getClass().getResourceAsStream("galaxy.jpg"));
+						  image = ImageIO.read(this.getClass().getResourceAsStream("foresy.jpg"));
+			} catch (Exception e) {
+
+			}
+			needImage = false;
+		}
 	}
 }

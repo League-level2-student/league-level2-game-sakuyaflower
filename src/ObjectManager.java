@@ -25,7 +25,7 @@ public class ObjectManager implements ActionListener{
 
 	}
 
-	void draw() {
+	void draw(Graphics g) {
 
 	}
 
