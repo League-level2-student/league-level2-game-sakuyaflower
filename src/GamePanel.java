@@ -15,6 +15,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
+	public static BufferedImage pc;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 
@@ -88,15 +89,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-
-		if (gotImage) {
-			g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
-		} else {
-			g.drawImage(image, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
-			
-		}
+		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
-		g.setColor(Color.WHITE);
+
 		g.drawString("score:" + manager.getScore(), 50, 50);
 
 	}
@@ -120,7 +115,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			JOptionPane.showMessageDialog(null,
-"Catch all the fruits in the certain order and at the end figure out the surprise. Use your arrow keys to move and catch all the fruits. ");
+					"Using your arrow keys to move, catch all the fruits in order in which is being called. ");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
@@ -130,6 +125,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState++;
 				if (currentState == GAME) {
 					startGame();
+					JOptionPane.showMessageDialog(null,
+							"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yam, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
 				}
 			}
 		}
@@ -176,7 +173,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (needImage) {
 			try {
 				imageBackground = ImageIO.read(this.getClass().getResourceAsStream("galaxy.jpg"));
-						  image = ImageIO.read(this.getClass().getResourceAsStream("foresy.jpg"));
+				image = ImageIO.read(this.getClass().getResourceAsStream("foresy.jpg"));
+				pc = ImageIO.read(this.getClass().getResourceAsStream("pc.jpg"));	
 			} catch (Exception e) {
 
 			}
