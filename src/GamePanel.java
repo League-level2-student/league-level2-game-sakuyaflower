@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
 	public static BufferedImage pc;
+	
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 
@@ -115,7 +116,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			JOptionPane.showMessageDialog(null,
-					"Using your arrow keys to move, catch all the fruits in order in which is being called. ");
+			"Using your arrow keys to move, catch all the fruits in order in which is being called. ");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
@@ -126,17 +127,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				if (currentState == GAME) {
 					startGame();
 					JOptionPane.showMessageDialog(null,
-							"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yam, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
+					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yam, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
 				}
 			}
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP && boy.y >= 0) {
-			boy.down();
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_DOWN && boy.y <= 700) {
-			boy.up();
-		}
+	
+		
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT && boy.x >= 0) {
 			boy.left();

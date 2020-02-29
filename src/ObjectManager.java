@@ -10,6 +10,7 @@ public class ObjectManager implements ActionListener{
 	Random random = new Random();
 	Fruits apple;
 	int score = 0;
+	int speed = 0;
 
 	public int getScore() {
 		return this.score;
@@ -18,19 +19,29 @@ public class ObjectManager implements ActionListener{
 	ObjectManager(PlayerBoy boy) {
 		this.boy = boy;
 	}
+	
+
 	void addFruits(Fruits fruit) {
 		fruits.add(fruits);
 	}
 	void update() {
-
+		boy.update();
+		for (int i = 0; i < fruits.size(); i++) {
+			
+			}
+			checkCollision();
+			purgeObjects();
+		
 	}
 
 	void draw(Graphics g) {
-
-	}
+		boy.draw(g);
+	
+		}
+	
 
 	void checkCollision() {
-
+		
 	}
 
 	void purgeObjects() {

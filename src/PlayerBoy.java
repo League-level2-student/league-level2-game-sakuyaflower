@@ -1,40 +1,44 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class PlayerBoy extends GameObject{
-	public static BufferedImage image;
+public class PlayerBoy extends GameObject {
+	public static BufferedImage boy;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	
-	PlayerBoy(int x, int y, int width, int height) {
+
+	public PlayerBoy(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		super.speed = 20;
 		if (needImage) {
-			loadImage("boy.png");
+			loadImage("rocket.png");
 		}
 	}
-	
+
 	void draw(Graphics g) {
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
-		} 
-	}
-	
-	void loadImage(String imageFile) {
-	    if (needImage) {
-	        try {
-	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
-		    gotImage = true;
-	        } catch (Exception e) {
-	            
-	        }
-	        needImage = false;
-	    }
+			g.drawImage(boy, x, y, width, height, null);
+		} else {
+			g.setColor(Color.BLUE);
+			g.fillRect(x, y, width, height);
+		}
 	}
 
+	void loadImage(String imageFile) {
+		if (needImage) {
+			try {
+				boy = ImageIO.read(this.getClass().getResourceAsStream("boy.jpg"));
+				gotImage = true;
+			} catch (Exception e) {
+
+			}
+			needImage = false;
+		}
+
+	}
 	public void right() {
 		x += speed;
 	}
@@ -43,12 +47,5 @@ public class PlayerBoy extends GameObject{
 		x -= speed;
 	}
 
-	public void up() {
-		y += speed;
-	}
-
-	public void down() {
-		y -= speed;
-	}
-
 }
+
