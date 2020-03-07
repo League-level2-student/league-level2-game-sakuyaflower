@@ -14,7 +14,7 @@ public class PlayerBoy extends GameObject {
 		super(x, y, width, height);
 		super.speed = 20;
 		if (needImage) {
-			loadImage("rocket.png");
+			loadImage("boy.png");
 		}
 	}
 
@@ -30,7 +30,7 @@ public class PlayerBoy extends GameObject {
 	void loadImage(String imageFile) {
 		if (needImage) {
 			try {
-				boy = ImageIO.read(this.getClass().getResourceAsStream("boy.jpg"));
+				boy = ImageIO.read(this.getClass().getResourceAsStream("boy.png"));
 				gotImage = true;
 			} catch (Exception e) {
 

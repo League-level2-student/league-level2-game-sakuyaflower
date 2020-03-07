@@ -127,7 +127,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				if (currentState == GAME) {
 					startGame();
 					JOptionPane.showMessageDialog(null,
-					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yam, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
+					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
 				}
 			}
 		}
@@ -138,7 +138,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			boy.left();
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT && boy.x <= 450) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT && boy.x <= 750) {
 			boy.right();
 
 		}
