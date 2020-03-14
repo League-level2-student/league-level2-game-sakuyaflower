@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage image;
 	public static BufferedImage pc;
 	
+	
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 
