@@ -10,15 +10,16 @@ public class PlayerBoy extends GameObject {
 	public static boolean gotImage = false;
 	
 
-	public PlayerBoy(int x, int y, int width, int height) {
+	PlayerBoy(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		super.speed = 20;
+		super.speed = 20; 
 		if (needImage) {
 			loadImage("boy.png");
 		}
 	}
 
 	void draw(Graphics g) {
+		
 		if (gotImage) {
 			g.drawImage(boy, x, y, width*3, height*3, null);
 		} else {

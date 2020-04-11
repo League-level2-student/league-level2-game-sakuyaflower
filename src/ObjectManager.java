@@ -8,11 +8,8 @@ public class ObjectManager implements ActionListener{
 	PlayerBoy boy;
 	ArrayList<Fruits>fruits = new ArrayList<Fruits>();
 	Random random = new Random();
-	Fruits apple;
-	
-	
 	int score = 0;
-	int speed = 0;
+
 
 	public int getScore() {
 		return this.score;
@@ -23,6 +20,7 @@ public class ObjectManager implements ActionListener{
 		addFruits(random.nextInt(Puzzle.WIDTH - 100), "apple" );
 	}
 	
+
 	void addFruits(int x, String fruitType) {
 		int width = 0;
 		int height= 0;
@@ -68,11 +66,14 @@ public class ObjectManager implements ActionListener{
 		
 		
 		
-			void update() {
+		void update() {
 		boy.update();
 		for (int i = 0; i < fruits.size(); i++) {
-			
+			fruits.get(i).update();
+			if(fruits.get(i).y >= Puzzle.HEIGHT) {	
+				fruits.get(i).isActive = false;
 			}
+		}
 			checkCollision();
 			purgeObjects();
 		
@@ -88,12 +89,23 @@ public class ObjectManager implements ActionListener{
 	
 
 	void checkCollision() {
-		
+		for (int i = 0; i < fruits.size(); i++) {
+			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
+			fruits.remove(i);
+			score++;
+			}
+		}
 	}
 
 	void purgeObjects() {
-
+		for (int i = 0; i < fruits.size(); i++) {
+			if (fruits.get(i).isActive == false) {
+				fruits.remove(i);
+			}
+		}
 	}
+
+
 	
 
 	
@@ -101,6 +113,6 @@ public class ObjectManager implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	
+		addFruits(1, "fruitType");
 	}
 }

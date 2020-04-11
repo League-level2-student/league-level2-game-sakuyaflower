@@ -93,9 +93,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
-
+g.setColor(Color.WHITE);
 		g.drawString("score:" + manager.getScore(), 50, 50);
-
 	}
 
 	void drawEndState(Graphics g) {
@@ -126,10 +125,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			} else {
 				currentState++;
 				if (currentState == GAME) {
-					startGame();
 					JOptionPane.showMessageDialog(null,
 					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
 				}
+				startGame();
 			}
 		}
 	
@@ -156,14 +155,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (currentState == MENU) {
 			updateMenuState();
-		} else if (currentState == GAME) {
+		} 
+		else if (currentState == GAME) {
 			updateGameState();
-		} else if (currentState == END) {
-			updateEndState();
-
 		}
+		else if (currentState == END) {
+			updateEndState();
+		}
+		
 		repaint();
-
+		manager.update();
 	}
 
 	void loadImage(String imageFile) {

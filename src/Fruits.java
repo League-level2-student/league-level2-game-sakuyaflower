@@ -18,19 +18,18 @@ public class Fruits extends GameObject{
 	public static BufferedImage yellow; 
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
-	
-static int fruits_height = 0; 
+	static int fruits_height = 0; 
+
 	
 	Fruits(int x, int width, int height) {
 		super(x, fruits_height, width, height);
 		super.speed = 3;
 		loadImage();
 	}
-	
-	
+
 	void update() {
-		y+=speed;
-			super.update();
+			y+=3;
+		super.update();
 	}
 	
 	void loadImage(){
