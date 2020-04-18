@@ -19,7 +19,7 @@ public class ObjectManager implements ActionListener{
 		this.boy = boy;
 		addFruits(random.nextInt(Puzzle.WIDTH - 100), "apple" );
 	}
-	
+
 
 	void addFruits(int x, String fruitType) {
 		int width = 0;
@@ -60,7 +60,7 @@ public class ObjectManager implements ActionListener{
 						height = 100;
 						width = 100; 
 		}
-	fruits.add(new Fruits(5, width, height));
+	fruits.add(new Fruits (fruitType, (x-width), width, height));
 	}
 		
 		
@@ -95,6 +95,9 @@ public class ObjectManager implements ActionListener{
 			score++;
 			}
 		}
+		if(boy.collisionBox.intersects()) {
+			
+		}
 	}
 
 	void purgeObjects() {
@@ -113,6 +116,6 @@ public class ObjectManager implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		addFruits(1, "fruitType");
+		addFruits(new Random().nextInt(Puzzle.WIDTH), Fruits.getRandomFruitType());
 	}
 }
