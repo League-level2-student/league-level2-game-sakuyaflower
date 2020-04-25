@@ -9,9 +9,7 @@ import javax.imageio.ImageIO;
 public class Fruits extends GameObject {
 	public BufferedImage image;
 	public static BufferedImage apple;
-	public static BufferedImage berry;
 	public static BufferedImage honey;
-	public static BufferedImage lemon;
 	public static BufferedImage pear;
 	public static BufferedImage pine;
 	public static BufferedImage straw;
@@ -27,12 +25,8 @@ public class Fruits extends GameObject {
 		loadImage();
 	    if( fruitType.equals( "apple" ) ) {
             image = apple;
-        } else if( fruitType.equals( "berry" ) ) {
-            image = berry;
         } else if( fruitType.equals( "honey" ) ) {
             image = honey;
-        } else if( fruitType.equals( "lemon" ) ) {
-            image = lemon;
         } else if( fruitType.equals( "pear" ) ) {
             image = pear;
         } else if( fruitType.equals( "pine" ) ) {
@@ -58,9 +52,7 @@ public class Fruits extends GameObject {
 		if (needImage) {
 			try {
 				apple = ImageIO.read(this.getClass().getResourceAsStream("apple.jpg"));
-				berry = ImageIO.read(this.getClass().getResourceAsStream("berry.jpg"));
 				honey = ImageIO.read(this.getClass().getResourceAsStream("honey.jpg"));
-				lemon = ImageIO.read(this.getClass().getResourceAsStream("lemon.jpg"));
 				pear = ImageIO.read(this.getClass().getResourceAsStream("pear.jpg"));
 				pine = ImageIO.read(this.getClass().getResourceAsStream("pine.jpg"));
 				straw = ImageIO.read(this.getClass().getResourceAsStream("strawberry.jpg"));
@@ -74,7 +66,7 @@ public class Fruits extends GameObject {
 		}
 	}
 
-	static String[] fruitTypes = { "apple", "berry", "honey", "lemon", "pear", "pine", "straw", "tomatoe", "yellow" };
+	static String[] fruitTypes = { "straw", "tomatoe", "apple", "yellow", "honey", "pear", "pine", };
 
 	public static String getRandomFruitType() {
 		Random rand = new Random();

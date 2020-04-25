@@ -16,8 +16,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
 	public static BufferedImage pc;
-	
-	
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 
@@ -101,7 +99,7 @@ g.setColor(Color.WHITE);
 		g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You Won The Game", 100, 300);
+		g.drawString("You lost. Try again", 100, 300);
 
 	}
 
@@ -126,7 +124,7 @@ g.setColor(Color.WHITE);
 				currentState++;
 				if (currentState == GAME) {
 					JOptionPane.showMessageDialog(null,
-					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple, Lemon, Elderberry.");
+					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple,Yellow Nectarine.");
 				}
 				startGame();
 			}
