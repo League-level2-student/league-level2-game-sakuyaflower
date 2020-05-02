@@ -4,22 +4,26 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class ObjectManager implements ActionListener {
 	PlayerBoy boy;
 	ArrayList<Fruits> fruits = new ArrayList<Fruits>();
 	ArrayList<Fruits> caughtFruits = new ArrayList<Fruits>();
+	String[] fruitOrder = {"straw", "tomatoe","apple", "yellow", "honey", "apple", "pear", "pine", "yellow"};
 	Random random = new Random();
 	int score = 0;
 
 	public int getScore() {
 		return this.score;
+		
 	}
 
 	ObjectManager(PlayerBoy boy) {
 		this.boy = boy;
 		addFruits(random.nextInt(Puzzle.WIDTH - 100), "apple");
 	}
-
+	
 	void addFruits(int x, String fruitType) {
 		int width = 0;
 		int height = 0;
@@ -55,6 +59,7 @@ public class ObjectManager implements ActionListener {
 			if (fruits.get(i).y >= Puzzle.HEIGHT) {
 				fruits.get(i).isActive = false;
 			}
+			
 		}
 		checkCollision();
 		purgeObjects();
@@ -70,17 +75,23 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void checkCollision() {
-
+		String nextFruit = "apple";
 		for (int i = 0; i < fruits.size(); i++) {
 			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
-				fruits.remove(i);
-				score++;
-				caughtFruits.add(fruits.get(2));
-				if (caughtFruits.contains(fruits.get(2))) {
+				if(fruits.get(i). fruitType.equals(nextFruit)) {
+					nextFruit = "pear"; 
+				}
+				if (caughtFruits.contains(fruits.get(i))) {
 					System.out.println(fruits + "was already caught");
+					score = 0; 
+				} else {
+					fruits.remove(i);
+					score++;
+					caughtFruits.add(fruits.get(i));
 				}
 			}
 		}
+	
 	}
 
 	void purgeObjects() {

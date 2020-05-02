@@ -1,3 +1,4 @@
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -8,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -18,7 +20,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage pc;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
-
+	static JFrame JF = new JFrame();
+	JPanel JP = new JPanel();
+	static Button button = new Button("Hint Button");
+	
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
@@ -29,6 +34,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	PlayerBoy boy = new PlayerBoy(400, 800, 50, 50);
 	ObjectManager manager = new ObjectManager(boy);
 
+	public static void main(String[] args) {
+		JF.add(button);
+	}
 	public void paintComponent(Graphics g) {
 
 		if (currentState == MENU) {
@@ -58,7 +66,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 	}
 
-	JPanel JP = new JPanel();
 
 	void updateMenuState() {
 
@@ -100,7 +107,8 @@ g.setColor(Color.WHITE);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
 		g.drawString("You lost. Try again", 100, 300);
-
+		JOptionPane.showInputDialog(null, "What is the code?");
+		
 	}
 
 	@Override
