@@ -18,8 +18,9 @@ public class Fruits extends GameObject {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	static int fruits_height = 0;
-	String fruitType() {
-	this.fruitType = fruitType;
+	String fruitTypes() {
+	this.fruitTypes = fruitTypes;
+	return null;
 	}
 	
 	Fruits(String fruitType, int x, int width, int height) {
@@ -43,7 +44,7 @@ public class Fruits extends GameObject {
         } else { 
             image = apple;
         }
-
+	}
 	
 
 		
@@ -71,7 +72,7 @@ public class Fruits extends GameObject {
 		}
 	}
 
-	static String[] fruitTypes = { "straw", "tomatoe", "apple", "yellow", "honey", "pear", "pine", };
+	static String[] fruitTypes = { "straw", "tomatoe", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow" };
 
 	public static String getRandomFruitType() {
 		Random rand = new Random();

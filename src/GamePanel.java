@@ -23,7 +23,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	static JFrame JF = new JFrame();
 	JPanel JP = new JPanel();
 	static Button button = new Button("Hint Button");
-	
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
@@ -76,6 +75,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (boy.isActive == false) {
 			endGame();
 		}
+		//	if(manager.checkGameEnd()) {
+			//	currentState = END_STATE;
+			//}
 	}
 
 	void updateEndState() {
@@ -106,7 +108,7 @@ g.setColor(Color.WHITE);
 		g.drawImage(imageBackground, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You lost. Try again", 100, 300);
+		//.g.drawString("You lost. Try again", 100, 300);
 		JOptionPane.showInputDialog(null, "What is the code?");
 		
 	}
@@ -132,7 +134,7 @@ g.setColor(Color.WHITE);
 				currentState++;
 				if (currentState == GAME) {
 					JOptionPane.showMessageDialog(null,
-					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple,Yellow Nectarine.");
+					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple, Yellow Nectarine.");
 				}
 				startGame();
 			}
