@@ -36,6 +36,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static void main(String[] args) {
 		JF.add(button);
 	}
+	
+	static String[] fruitOrder = {"Strawberry", "Tomatoe", "Apple", "Yellow Nectarine", "Honeydew", "Apple", "Pear", "Pineapple", "Yellow Necarine" };
+	
 	public void paintComponent(Graphics g) {
 
 		if (currentState == MENU) {

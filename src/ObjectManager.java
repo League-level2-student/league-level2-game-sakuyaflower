@@ -12,21 +12,20 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Fruits> fruits = new ArrayList<Fruits>();
 	ArrayList<Fruits> caughtFruits = new ArrayList<Fruits>();
 	String[] fruitOrder = { "straw", "tomatoe", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow" };
-	
-	Random random = new Random();
-	
-	
 
+	Random random = new Random();
 	int score = 0;
+	int nextFruit = 0;
+	String expectedFruit = GamePanel.fruitOrder[nextFruit];
 
 	public int getScore() {
 		return this.score;
 
 	}
+
 void fruitsOutOfOrder() {
-	int nextFruit = 0;
 	if(checkFruitCollision() == true) {
-		if(fruitsType.equals(fruitOrder([nextFruit]) == false)){
+		if(fruitsType.equals(fruitOrder[nextFruit]) == false)){
 			endGame();
 		
 		}
@@ -35,9 +34,9 @@ void fruitsOutOfOrder() {
 }
 
 	boolean checkGameEnd() {
-		boolean endGame = false; 
-		if(fruitsOutOfOrder == true) {
-		endGame = true;                                                                                    
+		boolean endGame = false;
+		if (fruitsOutOfOrder == true) {
+			endGame = true;
 		}
 		return endGame;
 	}
@@ -98,23 +97,25 @@ void fruitsOutOfOrder() {
 	}
 
 	void checkCollision() {
-		String nextFruit = "apple";
 		for (int i = 0; i < fruits.size(); i++) {
 			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
-				if (fruits.get(i).fruitTypes.equals(nextFruit)) {
-					nextFruit = "pear";
-				}
-				if (caughtFruits.contains(fruits.get(i))) {
-					System.out.println(fruits + "was already caught");
-					score = 0;
-				} else {
-					fruits.remove(i);
-					score++;
-					caughtFruits.add(fruits.get(i));
-				}
+				String caughtFruit = fruits.get(i).fruitTypes();
+
+				System.out.println("Caught fruit " + caughtFruit + "expected" + expectedFruit);
+			}
+
+			if (caughtFruits.equals(expectedFruit)) {
+				caughtFruits.add(fruits.get(i));
+				score++;
+				nextFruit++;
+			}
+			if (caughtFruits.size() == GamePanel.fruitOrder.length) {
+
+			} else {
+				score--;
+				nextFruit = 0;
 			}
 		}
-
 	}
 
 	void purgeObjects() {
