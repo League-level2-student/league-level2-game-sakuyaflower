@@ -16,6 +16,7 @@ public class ObjectManager implements ActionListener {
 	Random random = new Random();
 	int score = 0;
 	int nextFruit = 0;
+	boolean endGame = false;
 	String expectedFruit = GamePanel.fruitOrder[nextFruit];
 
 	public int getScore() {
@@ -23,19 +24,20 @@ public class ObjectManager implements ActionListener {
 
 	}
 
-void fruitsOutOfOrder() {
-	if(checkFruitCollision() == true) {
-		if(fruitsType.equals(fruitOrder[nextFruit]) == false)){
-			endGame();
+boolean fruitsOutOfOrder() {
+	if(checkCollision() == false) {
+		if(caughtFruits.equals(fruitOrder[nextFruit]) == false){
+			endGame = true;
 		
 		}
 }
+	return endGame;
 
 }
 
 	boolean checkGameEnd() {
-		boolean endGame = false;
-		if (fruitsOutOfOrder == true) {
+	
+		if (fruitsOutOfOrder() == true) {
 			endGame = true;
 		}
 		return endGame;
@@ -96,14 +98,13 @@ void fruitsOutOfOrder() {
 		}
 	}
 
-	void checkCollision() {
+	boolean checkCollision() {
 		for (int i = 0; i < fruits.size(); i++) {
 			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
 				String caughtFruit = fruits.get(i).fruitTypes();
 
 				System.out.println("Caught fruit " + caughtFruit + "expected" + expectedFruit);
 			}
-
 			if (caughtFruits.equals(expectedFruit)) {
 				caughtFruits.add(fruits.get(i));
 				score++;
@@ -116,6 +117,7 @@ void fruitsOutOfOrder() {
 				nextFruit = 0;
 			}
 		}
+		return false;
 	}
 
 	void purgeObjects() {
