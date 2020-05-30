@@ -23,25 +23,10 @@ public class ObjectManager implements ActionListener {
 		return this.score;
 
 	}
-
-boolean fruitsOutOfOrder() {
-	if(checkCollision() == false) {
-		if(caughtFruits.equals(fruitOrder[nextFruit]) == false){
-			endGame = true;
-		
-		}
-}
-	return endGame;
-
+public int getNextFruit() {
+	return nextFruit;
 }
 
-	boolean checkGameEnd() {
-	
-		if (fruitsOutOfOrder() == true) {
-			endGame = true;
-		}
-		return endGame;
-	}
 
 	ObjectManager(PlayerBoy boy) {
 		this.boy = boy;
@@ -98,28 +83,31 @@ boolean fruitsOutOfOrder() {
 		}
 	}
 
-	boolean checkCollision() {
+	void checkCollision() {
 		for (int i = 0; i < fruits.size(); i++) {
 			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
-				String caughtFruit = fruits.get(i).fruitTypes();
+				 String expectedFruit = GamePanel.fruitOrder[ nextFruit ];
+	                String[] caughtFruit = fruits.get( i ).fruitTypes;
+	                
+	                System.out.println( "Caught fruit: " + caughtFruit + " expected: " + expectedFruit );
 
-				System.out.println("Caught fruit " + caughtFruit + "expected" + expectedFruit);
-			}
 			if (caughtFruits.equals(expectedFruit)) {
 				caughtFruits.add(fruits.get(i));
 				score++;
 				nextFruit++;
-			}
+			
 			if (caughtFruits.size() == GamePanel.fruitOrder.length) {
 
-			} else {
+			} 
+		}else {
 				score--;
 				nextFruit = 0;
 			}
+			fruits.remove(i);
 		}
-		return false;
 	}
-
+}
+	
 	void purgeObjects() {
 		for (int i = 0; i < fruits.size(); i++) {
 			if (fruits.get(i).isActive == false) {
@@ -131,6 +119,6 @@ boolean fruitsOutOfOrder() {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		addFruits(new Random().nextInt(Puzzle.WIDTH), Fruits.getRandomFruitType());
+		addFruits(new Random().nextInt(Puzzle.WIDTH - 100) + 100, Fruits.getRandomFruitType());
 	}
 }

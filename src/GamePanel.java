@@ -18,8 +18,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imageBackground;
 	public static BufferedImage image;
 	public static BufferedImage pc;
+	
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+	
 	static JFrame JF = new JFrame();
 	JPanel JP = new JPanel();
 	static Button button = new Button("Hint Button");
@@ -37,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		JF.add(button);
 	}
 	
-	static String[] fruitOrder = {"Strawberry", "Tomatoe", "Apple", "Yellow Nectarine", "Honeydew", "Apple", "Pear", "Pineapple", "Yellow Necarine" };
+	static String[] fruitOrder = { "straw", "tomatoe", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow"  };
 	
 	public void paintComponent(Graphics g) {
 
@@ -103,7 +105,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
-g.setColor(Color.WHITE);
+		g.setColor(Color.WHITE);
 		g.drawString("score:" + manager.getScore(), 50, 50);
 	}
 
