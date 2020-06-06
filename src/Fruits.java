@@ -18,29 +18,25 @@ public class Fruits extends GameObject {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	static int fruits_height = 0;
-	String fruitTypes() {
-	this.fruitTypes = fruitTypes;
-	return null;
-	}
-	
-	Fruits(String fruitTypes, int x, int width, int height) {
+	String fruitType;   
+	Fruits(String fruitType, int x, int width, int height) {
 		super(x, fruits_height, width, height);
 		super.speed = 3;
-		
+		this.fruitType = fruitType;
 		loadImage();
-	    if( fruitTypes.equals( "apple" ) ) {
+	    if( fruitType.equals( "apple" ) ) {
             image = apple;
-        } else if( fruitTypes.equals( "honey" ) ) {
+        } else if( fruitType.equals( "honey" ) ) {
             image = honey;
-        } else if( fruitTypes.equals( "pear" ) ) {
+        } else if( fruitType.equals( "pear" ) ) {
             image = pear;
-        } else if( fruitTypes.equals( "pine" ) ) {
+        } else if( fruitType.equals( "pine" ) ) {
             image = pine;
-        } else if( fruitTypes.equals( "straw" ) ) {
+        } else if( fruitType.equals( "straw" ) ) {
             image = straw;
-        } else if( fruitTypes.equals( "tomato" ) ) {
+        } else if( fruitType.equals( "tomato" ) ) {
             image = tomato;
-        } else if( fruitTypes.equals( "yellow" ) ) {
+        } else if( fruitType.equals( "yellow" ) ) {
             image = yellow;
         } else { 
             image = apple;
@@ -75,12 +71,12 @@ public class Fruits extends GameObject {
 		}
 	}
 
-	static String[] fruitTypes = { "straw", "tomatoe", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow" };
 
-	public static String getRandomFruitTypes() {
+
+	public static String getRandomFruitType() {
 		Random rand = new Random();
-		String randomFruitTypes = fruitTypes[rand.nextInt(fruitTypes.length)];
-		return randomFruitTypes;
+		String randomFruitType = GamePanel.fruitOrder[rand.nextInt(GamePanel.fruitOrder.length)];
+		return randomFruitType;
 
 	}
 

@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
 		g.setColor(Color.WHITE);
-		g.drawString("score:" + manager.getScore(), 50, 50);
+		g.drawString(fruitOrder[manager.getNextFruit()] , 50, 50);
 	}
 
 	void drawEndState(Graphics g) {

@@ -86,12 +86,12 @@ public int getNextFruit() {
 	void checkCollision() {
 		for (int i = 0; i < fruits.size(); i++) {
 			if (boy.collisionBox.intersects(fruits.get(i).collisionBox)) {
-				 String expectedFruit = GamePanel.fruitOrder[ nextFruit ];
-	                String[] caughtFruit = fruits.get( i ).fruitTypes;
+				 String expectedFruits = GamePanel.fruitOrder[ nextFruit ];
+	                String caught = fruits.get( i ).fruitType;
 	                
-	                System.out.println( "Caught fruit: " + caughtFruit + " expected: " + expectedFruit );
+	                System.out.println( "Caught fruit: " + caught + " expected: " + expectedFruits );
 
-			if (caughtFruits.equals(expectedFruit)) {
+			if (caught.equals(expectedFruits)) {
 				caughtFruits.add(fruits.get(i));
 				score++;
 				nextFruit++;
