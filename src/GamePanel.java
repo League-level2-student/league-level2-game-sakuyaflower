@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		JF.add(button);
 	}
 	
-	static String[] fruitOrder = { "straw", "tomatoe", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow"  };
+	static String[] fruitOrder = { "straw", "tomato", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow"  };
 	
 	public void paintComponent(Graphics g) {
 
@@ -106,7 +106,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
 		g.setColor(Color.WHITE);
-		g.drawString(fruitOrder[manager.getNextFruit()] , 50, 50);
+		g.drawString(fruitOrder[manager.getNextFruit()] , 400, 50);
 	}
 
 	void drawEndState(Graphics g) {

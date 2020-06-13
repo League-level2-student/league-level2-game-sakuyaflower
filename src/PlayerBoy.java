@@ -20,12 +20,10 @@ public class PlayerBoy extends GameObject {
 
 	void draw(Graphics g) {
 		
-		if (gotImage) {
 			g.drawImage(boy, x, y, width*3, height*3, null);
-		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
-		}
+		
 	}
 
 	void loadImage(String imageFile) {
