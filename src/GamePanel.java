@@ -105,8 +105,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.drawImage(pc, 0, 0, Puzzle.WIDTH, Puzzle.HEIGHT, null);
 		manager.draw(g);
-		g.setColor(Color.WHITE);
-		g.drawString(fruitOrder[manager.getNextFruit()] , 400, 50);
+		g.setFont(titleFont);
+		g.setColor(Color.BLUE);
+		g.drawString(fruitOrder[manager.getNextFruit()] , 350, 50);
 	}
 
 	void drawEndState(Graphics g) {
@@ -114,7 +115,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
 		//.g.drawString("You lost. Try again", 100, 300);
-		JOptionPane.showInputDialog(null, "What is the code?");
+		
 		
 	}
 
@@ -129,7 +130,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			JOptionPane.showMessageDialog(null,
-			"Using your arrow keys to move, catch all the fruits in order in which is being called. ");
+			"Using your arrow keys to move, catch all the fruits in order in which is being called. When you collect all the fruits in order, there is a code at the end.");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
@@ -138,8 +139,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			} else {
 				currentState++;
 				if (currentState == GAME) {
-					JOptionPane.showMessageDialog(null,
-					"Collect these fruits in this order: Strawberry, Tomatoe, Apple, Yellow Nectarine, Honeydew, Apple, Pear, Pineapple, Yellow Nectarine.");
+					JOptionPane.showMessageDialog(null,"Collect the fruits in order based on the words on top of the screen when you play");
 				}
 				startGame();
 			}
