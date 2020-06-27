@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		JF.add(button);
 	}
 	
-	static String[] fruitOrder = { "straw", "tomato", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow"  };
+	static String[] fruitOrder = { "strawberry", "tomato", "apple", "yellow nectarine", "honeydew", "apple", "pear", "pineapple", "yellow nectarine"  };
 	
 	public void paintComponent(Graphics g) {
 
@@ -130,7 +130,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			JOptionPane.showMessageDialog(null,
-			"Using your arrow keys to move, catch all the fruits in order in which is being called. When you collect all the fruits in order, there is a code at the end.");
+			"Using your arrow keys to move, catch all the fruits in order in which is being called. When you collect all the fruits in order, there is a code at the end. Your hint is to use the first letter of every fruit you caught in order.");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {

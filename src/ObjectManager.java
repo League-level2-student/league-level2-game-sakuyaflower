@@ -15,7 +15,7 @@ public class ObjectManager implements ActionListener, KeyListener {
 	PlayerBoy boy;
 	ArrayList<Fruits> fruits = new ArrayList<Fruits>();
 	ArrayList<Fruits> caughtFruits = new ArrayList<Fruits>();
-	String[] fruitOrder = { "straw", "tomato", "apple", "yellow", "honey", "apple", "pear", "pine", "yellow" };
+	String[] fruitOrder = { "strawberry", "tomato", "apple", "yellow nectarine", "honeydew", "apple", "pear", "pineapple", "yellow nectarine" };
 	JPanel JP = new JPanel();
     JFrame JF = new JFrame();
     JButton JB = new JButton();
@@ -49,19 +49,19 @@ public class ObjectManager implements ActionListener, KeyListener {
 		if (fruitType.equals("apple")) {
 			height = 100;
 			width = 100;
-		} else if (fruitType.equals("honey")) {
+		} else if (fruitType.equals("honeydew")) {
 			height = 100;
 			width = 100;
 		} else if (fruitType.equals("pear")) {
 			height = 100;
 			width = 100;
-		} else if (fruitType.equals("pine")) {
+		} else if (fruitType.equals("pineapple")) {
 			height = 100;
 			width = 100;
-		} else if (fruitType.equals("straw")) {
+		} else if (fruitType.equals("strawberry")) {
 			height = 100;
 			width = 100;
-		} else if (fruitType.equals("yellow")) {
+		} else if (fruitType.equals("yellow nectarine")) {
 			height = 100;
 			width = 100;
 		} else if (fruitType.equals("tomato")) {
@@ -107,7 +107,7 @@ public class ObjectManager implements ActionListener, KeyListener {
 					nextFruit++;
 
 					if (caughtFruits.size() == GamePanel.fruitOrder.length) {
-						String answer = JOptionPane.showInputDialog(null,"What is the code? Make sure all the letters are capitalized. You get three hints. Press numbers 1, 2, and 3 if needed.");
+						String answer = JOptionPane.showInputDialog(null,"What is the code? Need a hint? Go back to the directions and you will find your hint there.");
 						if(answer.equals("STAY HAPPY")) {
 							JOptionPane.showMessageDialog(null,"You win!");
 						}	

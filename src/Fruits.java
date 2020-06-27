@@ -26,17 +26,17 @@ public class Fruits extends GameObject {
 		loadImage();
 	    if( fruitType.equals( "apple" ) ) {
             image = apple;
-        } else if( fruitType.equals( "honey" ) ) {
+        } else if( fruitType.equals( "honeydew" ) ) {
             image = honey;
         } else if( fruitType.equals( "pear" ) ) {
             image = pear;
-        } else if( fruitType.equals( "pine" ) ) {
+        } else if( fruitType.equals( "pineapple" ) ) {
             image = pine;
-        } else if( fruitType.equals( "straw" ) ) {
+        } else if( fruitType.equals( "strawberry" ) ) {
             image = straw;
         } else if( fruitType.equals( "tomato" ) ) {
             image = tomato;
-        } else if( fruitType.equals( "yellow" ) ) {
+        } else if( fruitType.equals( "yellow nectarine" ) ) {
             image = yellow;
         } else { 
             image = apple;
